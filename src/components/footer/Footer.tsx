@@ -30,18 +30,19 @@ export const Footer: React.FC = () => {
                   RS DESIGN
                 </span>
                 <span className="text-[9px] font-mono tracking-[0.25em] text-bronze-accent uppercase mt-0.5">
-                  Spatial Architecture & CGI
+                  Architecture • Interior • Visualization
                 </span>
               </div>
             </div>
 
             <div className="space-y-1 font-sans text-xs text-[#C2BEB6] font-light">
-              <p>Architecture & Masterplanning</p>
-              <p>Interior Architecture</p>
-              <p>Photorealistic 8K Visualization</p>
+              <p>Residential Architecture &amp; Villa Design</p>
+              <p>Curated Interior Design</p>
+              <p>2D Drafting &amp; Working Drawings</p>
+              <p>Photorealistic 3D Architectural Visualization</p>
             </div>
             <p className="text-[11px] text-[#6E6B65] pt-1 leading-relaxed">
-              Transforming abstract spatial ideas into thoroughly articulated living environments.
+              Lucknow-based architecture and interior design. Modern • Functional • Personalized • Visual.
             </p>
           </div>
 
@@ -138,12 +139,12 @@ export const Footer: React.FC = () => {
         {/* Bottom Tier: Copyright & Brand Statement */}
         <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
           <div>
-            <span>© 2026 RS DESIGN. All rights reserved.</span>
+            <span>© 2026 RS DESIGN. Lucknow, India. All rights reserved.</span>
           </div>
 
-          {/* Exact Brand statement from prompt */}
+          {/* Exact Brand Tagline */}
           <div className="text-center sm:text-right font-serif italic text-[#C2BEB6]">
-            Designing spaces. Visualizing ideas. Creating experiences.
+            Designing spaces. Defining experiences.
           </div>
         </div>
       </div>

@@ -1,18 +1,107 @@
 import React, { useState } from 'react';
-import { PROCESS_STAGES } from '../../data/servicesData';
-import { ArrowRight, Sliders, Layers, Sparkles, Compass } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, Compass, Layout, Palette, Eye, FileCheck } from 'lucide-react';
+
+interface ProcessStep {
+  step: string;
+  name: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  icon: React.ElementType;
+  image: string;
+  badge: string;
+}
 
 export const ProcessStory: React.FC = () => {
-  const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
-  const [sliderPosition, setSliderPosition] = useState<number>(50); // For split comparison slider
+  const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
+  const [selectedTransform, setSelectedTransform] = useState<number>(2);
 
-  // 3-way transformation stages for interactive demonstration
+  // The 5 Core Stages of the RS DESIGN Process
+  const processSteps: ProcessStep[] = [
+    {
+      step: '01',
+      name: 'Discover',
+      tagline: 'Requirements, Lifestyle & Site Analysis',
+      description: 'Understanding your requirements, lifestyle, site and design expectations.',
+      highlights: [
+        'Comprehensive Client Briefing',
+        'Lifestyle & Living Rituals Analysis',
+        'Site Orientation & Micro-climate Study',
+        'Design Vision & Scope Definition'
+      ],
+      icon: Compass,
+      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=85',
+      badge: 'Discovery & Consultation'
+    },
+    {
+      step: '02',
+      name: 'Plan',
+      tagline: 'Functional Layouts & Spatial Planning',
+      description: 'Developing functional layouts and efficient spatial planning.',
+      highlights: [
+        'Functional Floor Plan Formulations',
+        'Circulation & Movement Efficiency',
+        'Zoning & Room Adjacencies',
+        'Natural Daylight & Sightline Planning'
+      ],
+      icon: Layout,
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+      badge: 'Layouts & Architecture'
+    },
+    {
+      step: '03',
+      name: 'Design',
+      tagline: 'Architectural Language, Materials & Detailing',
+      description: 'Creating the architectural language, materials, colours, furniture and details.',
+      highlights: [
+        'Architectural Identity & Form',
+        'Sensory Material & Texture Palette',
+        'Bespoke Joinery & Millwork Detailing',
+        'Colour Harmony & Circadian Lighting'
+      ],
+      icon: Palette,
+      image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
+      badge: 'Aesthetics & Interior Craft'
+    },
+    {
+      step: '04',
+      name: 'Visualize',
+      tagline: 'Realistic 3D Views & Visual Experience',
+      description: 'Developing realistic 3D views to help you experience the proposed design.',
+      highlights: [
+        'Photorealistic 8K Still Renders',
+        'Natural Sun Path & Shadow Simulation',
+        'Exterior Facade & Interior Mood Studies',
+        'Cinematic Architectural Walkthroughs'
+      ],
+      icon: Eye,
+      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85',
+      badge: '3D CGI Visualization'
+    },
+    {
+      step: '05',
+      name: 'Deliver',
+      tagline: 'Final Design, Drawings & Documentation',
+      description: 'Presenting the final design with drawings, visualizations and supporting documentation.',
+      highlights: [
+        'Complete 2D Working Drawing Packages',
+        'High-Resolution 3D Presentation Portfolio',
+        'Technical Elevations, Sections & Schedules',
+        'Seamless Execution Handover'
+      ],
+      icon: FileCheck,
+      image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=85',
+      badge: 'Handover & Documentation'
+    }
+  ];
+
+  // 3-way Transformation Progression (Plan → Clay → Final Render)
   const transformStages = [
     {
       id: 'plan',
       label: '01. 2D Drafting & Plan',
       title: 'Architectural Floor Plan & Sightlines',
-      description: 'Orthographic 2D documentation specifying load-bearing shear walls, pocket doors, glazing alignments, and clear internal circulation routes.',
+      description: 'Orthographic 2D documentation specifying load-bearing walls, circulation routes, and room alignments.',
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
       badge: 'CAD / BIM'
     },
@@ -20,7 +109,7 @@ export const ProcessStory: React.FC = () => {
       id: 'clay',
       label: '02. 3D Clay Wireframe',
       title: 'Digital Massing & Ambient Occlusion',
-      description: 'Untextured monochromatic clay model deployed in 3ds Max/Rhino to evaluate ceiling proportions, sunlight penetration, and shadow volumes without color bias.',
+      description: 'Monochromatic clay massing to evaluate ceiling proportions, sunlight penetration, and shadow volumes without color bias.',
       image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85',
       badge: 'CLAY MASSING'
     },
@@ -28,19 +117,28 @@ export const ProcessStory: React.FC = () => {
       id: 'final',
       label: '03. Photorealistic Render',
       title: 'Global Illumination & PBR Shading',
-      description: 'Final multi-bounce raytraced CGI integrating photogrammetric travertine textures, micro-reflections, warm 2700K lighting, and atmospheric dust motes.',
+      description: 'Final raytraced visualization integrating photorealistic textures, micro-reflections, and warm ambient lighting.',
       image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
-      badge: '8K CORONA CGI'
+      badge: 'PHOTOREALISTIC 3D'
     }
   ];
 
-  const [selectedTransform, setSelectedTransform] = useState<number>(2);
+  const currentStep = processSteps[activeStepIndex];
+  const StepIcon = currentStep.icon;
+
+  const handleNextStep = () => {
+    setActiveStepIndex((prev) => (prev + 1) % processSteps.length);
+  };
+
+  const handlePrevStep = () => {
+    setActiveStepIndex((prev) => (prev - 1 + processSteps.length) % processSteps.length);
+  };
 
   return (
     <section
       id="process-story"
       className="relative w-full bg-warm-dark py-28 md:py-40 px-6 md:px-14 border-b border-[#22201D]"
-      aria-label="Architecture to Visualization Story"
+      aria-label="Design Process"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -48,27 +146,165 @@ export const ProcessStory: React.FC = () => {
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <span className="text-xs font-mono text-bronze-accent tracking-widest uppercase">
-                02 — THE METHODOLOGY
+                02 — DESIGN PROCESS
               </span>
               <div className="h-px w-16 bg-[#2C2A27]" />
             </div>
             <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-stone-paper uppercase leading-none">
-              From Plan <br />
-              <span className="italic text-bronze-accent">To Place.</span>
+              From Idea <br />
+              <span className="italic text-bronze-accent">To Reality.</span>
             </h2>
           </div>
 
           <p className="max-w-md text-xs sm:text-sm text-stone-muted font-light leading-relaxed">
-            Witness how an abstract client idea transforms through disciplined 2D spatial geometry and 3D digital massing into tangible, hyper-realistic architecture.
+            Every project develops through five structured phases — translating your vision into functional planning, refined aesthetics, realistic 3D visualization, and complete execution documentation.
           </p>
         </div>
 
-        {/* Part 1: Interactive Transformation Showcase */}
-        <div className="mb-24 p-6 sm:p-10 rounded-2xl bg-[#171615] border border-[#262422]">
+        {/* 5-Step Process Timeline Selector */}
+        <div className="mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {processSteps.map((item, idx) => {
+              const ItemIcon = item.icon;
+              const isActive = activeStepIndex === idx;
+
+              return (
+                <button
+                  key={item.step}
+                  onClick={() => setActiveStepIndex(idx)}
+                  className={`p-4 md:p-5 rounded-xl text-left border transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+                    isActive
+                      ? 'bg-[#22201D] border-bronze-accent shadow-xl ring-1 ring-bronze-accent/40'
+                      : 'bg-[#171615] border-[#262422] hover:border-[#383531] hover:bg-[#1C1B19]'
+                  }`}
+                  data-cursor="SELECT"
+                >
+                  <div className="w-full">
+                    <div className="flex items-center justify-between text-xs font-mono mb-3">
+                      <span className={isActive ? 'text-bronze-accent font-semibold' : 'text-[#6E6B65]'}>
+                        {item.step}
+                      </span>
+                      <ItemIcon
+                        className={`w-4 h-4 transition-colors ${
+                          isActive ? 'text-bronze-accent' : 'text-stone-muted'
+                        }`}
+                      />
+                    </div>
+                    <h3 className="font-serif text-base sm:text-lg text-stone-paper uppercase tracking-wide">
+                      {item.name}
+                    </h3>
+                  </div>
+
+                  <p className="mt-3 text-[11px] text-stone-muted font-light line-clamp-2 leading-relaxed">
+                    {item.description}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Active Stage Deep-Dive Showcase Card */}
+        <div className="mb-24 p-6 sm:p-10 md:p-12 rounded-2xl bg-[#171615] border border-[#262422] shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left: Stage Visual */}
+            <div className="lg:col-span-6 relative aspect-16/10 rounded-xl overflow-hidden bg-warm-dark group">
+              <img
+                src={currentStep.image}
+                alt={`${currentStep.name} - RS DESIGN`}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-warm-dark/80 via-transparent to-transparent pointer-events-none" />
+
+              <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-warm-dark/85 backdrop-blur-md border border-[#2C2A27] text-[10px] font-mono tracking-widest text-bronze-accent uppercase">
+                {currentStep.badge}
+              </div>
+
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-stone-light/90">
+                <span className="tracking-widest uppercase">STAGE {currentStep.step} OF 05</span>
+                <span className="text-bronze-accent">{currentStep.name.toUpperCase()}</span>
+              </div>
+            </div>
+
+            {/* Right: Stage Detail & Deliverables */}
+            <div className="lg:col-span-6 flex flex-col justify-center space-y-6">
+              <div>
+                <div className="inline-flex items-center space-x-2 text-xs font-mono text-bronze-accent tracking-widest uppercase mb-2">
+                  <StepIcon className="w-3.5 h-3.5" />
+                  <span>PHASE {currentStep.step} — {currentStep.name.toUpperCase()}</span>
+                </div>
+
+                <h3 className="font-serif text-3xl sm:text-4xl text-stone-paper uppercase leading-tight">
+                  {currentStep.name}
+                </h3>
+
+                <p className="text-xs font-mono text-stone-muted tracking-widest uppercase mt-1">
+                  {currentStep.tagline}
+                </p>
+              </div>
+
+              <p className="text-sm md:text-base text-[#C2BEB6] font-light leading-relaxed">
+                {currentStep.description}
+              </p>
+
+              {/* Highlights Checklist */}
+              <div className="pt-2 border-t border-[#262422]">
+                <h4 className="text-[11px] font-mono uppercase tracking-wider text-stone-muted mb-3">
+                  Scope &amp; Key Focus Points:
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {currentStep.highlights.map((point, i) => (
+                    <div key={i} className="flex items-start space-x-2 text-xs text-stone-light">
+                      <Check className="w-3.5 h-3.5 text-bronze-accent shrink-0 mt-0.5" />
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Step Navigation Controls */}
+              <div className="pt-4 flex items-center justify-between border-t border-[#262422]">
+                <button
+                  onClick={handlePrevStep}
+                  className="inline-flex items-center space-x-2 text-xs font-mono text-stone-muted hover:text-stone-light uppercase tracking-wider transition-colors cursor-pointer"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Previous</span>
+                </button>
+
+                <div className="flex items-center space-x-1.5">
+                  {processSteps.map((_, dotIdx) => (
+                    <button
+                      key={dotIdx}
+                      onClick={() => setActiveStepIndex(dotIdx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        activeStepIndex === dotIdx
+                          ? 'w-6 bg-bronze-accent'
+                          : 'w-1.5 bg-[#2E2C28] hover:bg-stone-muted'
+                      }`}
+                      aria-label={`Go to step ${dotIdx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleNextStep}
+                  className="inline-flex items-center space-x-2 text-xs font-mono text-bronze-accent hover:text-stone-light uppercase tracking-wider transition-colors cursor-pointer"
+                >
+                  <span>Next Step</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Interactive Transformation Showcase (Plan → Clay → Photorealistic) */}
+        <div className="p-6 sm:p-10 rounded-2xl bg-[#171615] border border-[#262422]">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 border-b border-[#262422] gap-4">
             <div>
               <span className="text-xs font-mono text-bronze-accent uppercase tracking-wider block">
-                INTERACTIVE COMPARISON
+                SPATIAL EVOLUTION
               </span>
               <h3 className="font-serif text-2xl md:text-3xl text-stone-paper mt-1">
                 2D Floor Plan → 3D Model → Final Render
@@ -81,7 +317,7 @@ export const ProcessStory: React.FC = () => {
                 <button
                   key={stage.id}
                   onClick={() => setSelectedTransform(idx)}
-                  className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all duration-200 ${
+                  className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider transition-all duration-200 cursor-pointer ${
                     selectedTransform === idx
                       ? 'bg-stone-light text-warm-dark font-semibold'
                       : 'bg-[#1F1E1B] text-stone-muted hover:text-stone-light border border-[#2E2C28]'
@@ -115,7 +351,6 @@ export const ProcessStory: React.FC = () => {
                 {transformStages[selectedTransform].badge}
               </div>
 
-              {/* Interactive Split Indicator */}
               <div className="absolute bottom-4 right-4 px-3 py-1 rounded bg-warm-dark/75 backdrop-blur-xs text-[11px] font-mono text-stone-light">
                 STAGE {selectedTransform + 1} OF 3
               </div>
@@ -136,7 +371,7 @@ export const ProcessStory: React.FC = () => {
               <div className="pt-4 flex items-center space-x-3">
                 <button
                   onClick={() => setSelectedTransform((prev) => (prev + 1) % 3)}
-                  className="inline-flex items-center space-x-2 text-xs font-mono text-bronze-accent hover:text-stone-light tracking-wider uppercase transition-colors"
+                  className="inline-flex items-center space-x-2 text-xs font-mono text-bronze-accent hover:text-stone-light tracking-wider uppercase transition-colors cursor-pointer"
                 >
                   <span>Advance Stage</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -145,78 +380,9 @@ export const ProcessStory: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Part 2: Visual 7-Step Process Chain (Idea → 2D Plan → Spatial Design → Materials → Lighting → 3D Visualization → Final Space) */}
-        <div>
-          <div className="flex items-center space-x-3 mb-8">
-            <span className="text-xs font-mono text-stone-muted tracking-widest uppercase">
-              THE COMPLETE 7-PHASE PIPELINE
-            </span>
-            <div className="h-px flex-1 bg-[#22201D]" />
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
-            {PROCESS_STAGES.map((stage, idx) => (
-              <div
-                key={stage.step}
-                onClick={() => setActiveStageIndex(idx)}
-                className={`p-4 rounded-xl cursor-pointer border transition-all duration-300 flex flex-col justify-between ${
-                  activeStageIndex === idx
-                    ? 'bg-[#22201D] border-bronze-accent shadow-lg'
-                    : 'bg-[#171615] border-[#262422] hover:border-[#383531]'
-                }`}
-                data-cursor="STAGE"
-              >
-                <div>
-                  <div className="flex items-center justify-between text-[11px] font-mono mb-2">
-                    <span className={activeStageIndex === idx ? 'text-bronze-accent' : 'text-[#6E6B65]'}>
-                      {stage.step}
-                    </span>
-                    {idx < PROCESS_STAGES.length - 1 && (
-                      <span className="text-[#3E3A34] text-xs">→</span>
-                    )}
-                  </div>
-                  <h4 className="font-serif text-sm font-normal text-stone-paper uppercase tracking-wide">
-                    {stage.name}
-                  </h4>
-                </div>
-                <span className="text-[9px] font-mono text-stone-muted mt-3 line-clamp-1">
-                  {stage.category}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Active Phase Deep Dive */}
-          <div className="mt-8 p-8 rounded-2xl bg-[#171615]/70 border border-[#262422] grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-4 aspect-4/3 rounded-lg overflow-hidden bg-warm-dark">
-              <img
-                src={PROCESS_STAGES[activeStageIndex].image}
-                alt={PROCESS_STAGES[activeStageIndex].title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="md:col-span-8 flex flex-col justify-center">
-              <div className="flex items-center space-x-2 text-xs font-mono text-bronze-accent mb-1">
-                <span>STAGE {PROCESS_STAGES[activeStageIndex].step}</span>
-                <span>/</span>
-                <span>{PROCESS_STAGES[activeStageIndex].category}</span>
-              </div>
-              <h3 className="font-serif text-2xl sm:text-3xl text-stone-paper uppercase">
-                {PROCESS_STAGES[activeStageIndex].title}
-              </h3>
-              <p className="mt-3 text-xs sm:text-sm text-[#C2BEB6] font-light leading-relaxed">
-                {PROCESS_STAGES[activeStageIndex].description}
-              </p>
-
-              <div className="mt-6 pt-4 border-t border-[#262422] flex items-center space-x-3 text-xs font-mono">
-                <span className="text-stone-muted uppercase">Deliverable:</span>
-                <span className="text-stone-light">{PROCESS_STAGES[activeStageIndex].deliverable}</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
 };
+
+export default ProcessStory;

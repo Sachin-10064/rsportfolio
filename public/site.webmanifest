@@ -1,6 +1,11 @@
 {
-  "name": "RS DESIGN",
-  "short_name": "RS",
+  "name": "RS DESIGN | Architecture & Interior Design in Lucknow",
+  "short_name": "RS DESIGN",
+  "description": "RS Design is a Lucknow-based architecture and interior design studio specializing in residential architecture, villa design, interior design, 2D drawings and photorealistic 3D visualization.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121110",
+  "theme_color": "#121110",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -14,8 +19,5 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ],
-  "theme_color": "#000",
-  "background_color": "",
-  "display": "standalone"
+  ]
 }

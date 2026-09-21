@@ -27,7 +27,7 @@ export const AboutSection: React.FC = () => {
               className="w-full h-full object-cover grayscale-30 hover:grayscale-0 transition-all duration-700"
             />
             <div className="absolute bottom-4 left-4 px-3.5 py-1.5 rounded-full bg-warm-dark/85 backdrop-blur-md border border-[#2C2A27] text-[10px] font-mono tracking-widest text-stone-light">
-              ATELIER // NEW DELHI & INTERNATIONAL
+              ATELIER // LUCKNOW &amp; COMMISSIONED PROJECTS
             </div>
           </div>
 
@@ -35,19 +35,25 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-stone-paper uppercase leading-[1.1]">
               Built Around <br />
-              <span className="italic text-bronze-accent">Design, Detail & Atmosphere.</span>
+              <span className="italic text-bronze-accent">Design, Detail &amp; Atmosphere.</span>
             </h2>
 
             <p className="font-sans text-sm md:text-base text-[#C2BEB6] font-light leading-relaxed">
-              RS Design brings together architectural thinking, interior design and visualization to create spaces that are considered from both a functional and visual perspective.
+              RS Design  is an architecture and interior design  based in Lucknow, Uttar Pradesh.
+              <br />
+              We specialize in residential architecture, interior design, space planning, 2D architectural drawings and photorealistic 3D visualization.
+              <br />
+              Our design approach combines functionality, aesthetics and careful detailing to create spaces that reflect the client's requirements and lifestyle.
+              <br />
+              Every project is developed with attention to planning, proportions, materials, lighting and visual character.
             </p>
 
-            <p className="font-sans text-xs md:text-sm text-stone-muted font-light leading-relaxed">
-              We operate without decorative compromise. Whether modeling the exact bevel of a stone hearth or choreographing natural daylight through high clerestory glazing, our multidisciplinary team ensures every spatial decision carries intent.
-            </p>
+            {/* <p className="font-sans text-xs md:text-sm text-stone-muted font-light leading-relaxed">
+              Rooted in our core pillars—Modern, Functional, Personalized, and Visual—we operate without decorative compromise. Whether orchestrating structural sightlines across a contemporary villa or choreographing natural daylight through high clerestory glazing, our Lucknow team ensures every spatial decision carries intent.
+            </p> */}
 
             {/* Metrics */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#262422]">
+            {/* <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#262422]">
               <div>
                 <span className="font-serif text-3xl md:text-4xl text-stone-paper font-light block">
                   35+
@@ -72,7 +78,7 @@ export const AboutSection: React.FC = () => {
                   Bespoke Detailing
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

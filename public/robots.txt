@@ -1,0 +1,9 @@
+# robots.txt for RS DESIGN
+User-agent: *
+Allow: /
+
+# Host
+Host: https://rsportfolio-eight.vercel.app
+
+# Sitemaps
+Sitemap: https://rsportfolio-eight.vercel.app/sitemap.xml

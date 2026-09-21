@@ -216,25 +216,27 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
           <div className="inline-flex items-center space-x-3 mb-4 sm:mb-6">
             <span className="w-2 h-2 rounded-full bg-bronze-accent animate-ping" />
             <span className="text-[11px] sm:text-xs font-mono tracking-[0.35em] text-bronze-accent uppercase">
-              THE COMPLETE 7-PHASE PIPELINE
+              RS DESIGN • LUCKNOW
             </span>
           </div>
 
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight text-stone-paper uppercase leading-[0.92] drop-shadow-2xl">
-            Designing <br className="hidden sm:block" />
-            <span className="italic font-normal text-bronze-accent">Spaces.</span>
+          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-stone-paper uppercase leading-[0.96] drop-shadow-2xl">
+            Designing Spaces. <br className="hidden sm:block" />
+            <span className="italic font-normal text-bronze-accent">Defining Experiences.</span>
           </h1>
+          <div className="mt-4 flex items-center space-x-2 text-[10px] sm:text-xs font-mono tracking-[0.25em] text-stone-light/80 uppercase">
+            <span>Architecture</span>
+            <span className="text-bronze-accent">•</span>
+            <span>Interior Design</span>
+            <span className="text-bronze-accent">•</span>
+            <span>3D Visualization</span>
 
-          <p className="mt-6 sm:mt-8 max-w-xl text-xs sm:text-sm md:text-base text-stone-light/90 font-light leading-relaxed drop-shadow-md">
-            A continuous spatial evolution from conceptual 2D drafting and 3D massing to photorealistic atmospheric reality.
-          </p>
-
-          <div className="mt-10 flex flex-col items-center space-y-2 pointer-events-auto">
-            <span className="text-[10px] font-mono tracking-[0.3em] text-stone-muted uppercase animate-pulse">
-              Scroll to Begin Transformation
-            </span>
-            <span className="text-bronze-accent text-sm animate-bounce">↓</span>
           </div>
+
+          <p className="mt-5 max-w-2xl text-xs sm:text-sm md:text-base text-stone-light/90 font-light leading-relaxed drop-shadow-md">
+            RS Design creates thoughtfully designed residential spaces that combine functionality, contemporary aesthetics and detailed visualization.
+            <br />From initial planning and 2D drawings to realistic 3D visualization, we transform ideas into spaces that are designed with purpose.
+          </p>
         </div>
       </div>
 
@@ -293,7 +295,6 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
           </div>
         );
       })}
-
 
       {/* Initial Bottom Scroll Indicator (Fades out when scroll starts) */}
       <div

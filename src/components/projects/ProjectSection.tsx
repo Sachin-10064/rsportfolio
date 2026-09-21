@@ -15,7 +15,7 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({ onSelectProject 
     'Architecture',
     'Interior Design',
     '3D Visualization',
-    'Commercial'
+    'Drawings'
   ];
 
   const filteredProjects = activeCategory === 'All'
@@ -47,11 +47,10 @@ export const ProjectSection: React.FC<ProjectSectionProps> = ({ onSelectProject 
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs tracking-wider uppercase transition-all duration-200 ${
-                  activeCategory === cat
+                className={`px-4 py-1.5 rounded-full text-xs tracking-wider uppercase transition-all duration-200 ${activeCategory === cat
                     ? 'bg-stone-light text-warm-dark font-semibold shadow-lg'
                     : 'bg-warm-stone text-stone-muted hover:text-stone-light hover:bg-[#252320] border border-[#2A2825]'
-                }`}
+                  }`}
                 data-cursor="FILTER"
               >
                 {cat}

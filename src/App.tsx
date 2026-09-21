@@ -61,15 +61,17 @@ export default function App() {
         {/* 7. Architectural Material & Detail Moodboard */}
         <MaterialSection />
 
-        {/* 8. Full-Screen Typography Statement */}
-        <StatementSection />
-
-        {/* 9. Contact & Commission Section */}
+        {/* 8. Contact & Commission Section */}
         <ContactSection
           inquiryOpen={inquiryModalOpen}
           onOpenInquiry={() => setInquiryModalOpen(true)}
           onCloseInquiry={() => setInquiryModalOpen(false)}
         />
+
+        {/* 9. Full-Screen Typography Statement */}
+        <StatementSection />
+
+
       </main>
 
       {/* 10. Minimalist Footer */}

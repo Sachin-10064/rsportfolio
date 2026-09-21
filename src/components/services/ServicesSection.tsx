@@ -40,7 +40,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onStartProject
         </div>
 
         {/* Editorial Service List (Large numbers, typography-led) */}
-        <div className="divide-y divide-[#262422] border-y border-[#262422]">
+        <div className="divide-y divide-[#262422] border-y">
           {SERVICES_DATA.map((service, index) => {
             const isExpanded = expandedIndex === index;
 

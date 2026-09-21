@@ -53,7 +53,7 @@ export const IntroSection: React.FC = () => {
 
             <div className="mt-8 flex items-center space-x-4">
               <span className="text-[11px] font-mono tracking-widest text-stone-muted uppercase">
-                EST. 2020 • NEW DELHI
+                EST. 2020 • LUCKNOW, INDIA
               </span>
             </div>
           </div>
@@ -61,47 +61,19 @@ export const IntroSection: React.FC = () => {
           {/* Right Column: Supporting Architectural Copy */}
           <div className="lg:col-span-5 flex flex-col justify-between pt-2">
             <p className="font-sans text-base md:text-lg text-[#C2BEB6] font-light leading-relaxed tracking-wide">
-              RS Design approaches architecture and interiors through a balance of form, function, material, light and atmosphere. From initial planning to detailed visualization, every project is developed with intention.
-            </p>
-
-            <p className="mt-6 text-sm text-stone-muted font-light leading-relaxed">
-              We believe a building or interior shouldn’t simply look impressive in a render; it must feel grounded, responsive to its landscape, and deeply humane to occupy every single day.
+              Good design is not only about how a space looks — it is about how the space works, feels and becomes part of everyday life.
             </p>
 
             {/* Quote tag */}
             <div className="mt-8 pt-6 border-t border-[#262422]">
               <blockquote className="italic font-serif text-sm text-stone-light/90">
-                “Designing spaces. Visualizing ideas. Creating experiences.”
+                “Designing spaces. Defining experiences.”
               </blockquote>
               <cite className="block not-italic text-[10px] uppercase font-mono tracking-widest text-bronze-accent mt-2">
                 — RS Design Manifesto
               </cite>
             </div>
           </div>
-        </div>
-
-        {/* 4 Core Architectural Pillars */}
-        <div className="mt-20 md:mt-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 pt-16 border-t border-[#262422]">
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <div
-                key={pillar.num}
-                className="group flex flex-col space-y-4 p-6 rounded-xl bg-[#171615]/40 border border-[#262422] hover:border-bronze-accent/40 transition-colors duration-300"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-bronze-accent">{pillar.num}</span>
-                  <Icon className="w-4 h-4 text-stone-muted group-hover:text-bronze-accent transition-colors" />
-                </div>
-                <h3 className="font-serif text-xl font-normal text-stone-paper">
-                  {pillar.title}
-                </h3>
-                <p className="text-xs text-stone-muted leading-relaxed font-light">
-                  {pillar.description}
-                </p>
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>

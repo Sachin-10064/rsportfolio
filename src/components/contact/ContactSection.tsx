@@ -63,12 +63,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
         {/* Big Editorial Heading */}
         <div className="max-w-4xl mb-16 md:mb-24">
-          <h2 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light text-stone-paper uppercase leading-[0.95] tracking-tight">
-            Have A Space <br />
-            <span className="italic text-bronze-accent">In Mind?</span>
+          <h2 className="font-serif text-5xl sm:text-7xl font-light text-stone-paper uppercase leading-[0.95] tracking-tight">
+            Let's Create Something <br />
+            <span className="italic text-bronze-accent">Remarkable.</span>
           </h2>
-          <p className="mt-8 text-base md:text-xl text-[#C2BEB6] font-light leading-relaxed">
-            Let's turn the idea into something real.
+          <p className="mt-8 text-sm sm:text-base md:text-xl text-[#C2BEB6] font-light leading-relaxed">
+            Have a house, interior or architectural project in mind?
+          </p>
+          <p className="mt-2 lg:text-sm text-base md:text-lg text-stone-muted font-light leading-relaxed">
+            Let's discuss your requirements and turn your ideas into a thoughtfully designed space.
           </p>
 
           <div className="mt-10">
@@ -109,25 +112,25 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <span>Direct Line</span>
             </span>
             <a
-              href="tel:+911149823100"
+              href="tel:+919889337006"
               className="font-serif text-lg text-stone-light hover:text-bronze-accent transition-colors font-mono"
             >
-              +91 (0) 11 4982 3100
+              +91 98893 37006
             </a>
-            <span className="text-xs text-[#6E6B65]">Mon – Fri, 10:00 – 19:00 IST</span>
+            <span className="text-xs text-[#6E6B65]">Mon – Sat, 10:00 – 19:00 IST</span>
           </div>
 
           {/* Location */}
-          {/* <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-2">
             <span className="text-[10px] font-mono tracking-widest text-stone-muted uppercase flex items-center space-x-2">
               <MapPin className="w-3.5 h-3.5 text-bronze-accent" />
-              <span> Atelier</span>
+              <span>Studio Atelier</span>
             </span>
             <span className="font-serif text-lg text-stone-light">
-              New Delhi, India
+              Lucknow, Uttar Pradesh
             </span>
-            <span className="text-xs text-[#6E6B65]">Available for global commissions</span>
-          </div> */}
+            <span className="text-xs text-[#6E6B65]">Commissions across India &amp; Worldwide</span>
+          </div>
 
           {/* Social & Messaging */}
           <div className="flex flex-col space-y-2">
@@ -137,22 +140,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
               </svg>
-              <span>Social & Dispatch</span>
+              <span>Social &amp; Dispatch</span>
             </span>
             <div className="flex items-center space-x-4 pt-1">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/rsdesign477?stkn=MTJrZzVsdHQyaHMxZA%3D%3D"
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs font-mono uppercase text-stone-light hover:text-bronze-accent transition-colors"
+                title="RS Design Instagram"
               >
                 Instagram ↗
               </a>
               <a
-                href="https://wa.me/911149823100"
+                href="https://wa.me/919889337006"
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs font-mono uppercase text-stone-light hover:text-bronze-accent transition-colors"
+                title="RS Design WhatsApp"
               >
                 WhatsApp ↗
               </a>

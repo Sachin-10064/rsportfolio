@@ -69,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
                 RS DESIGN
               </span>
               <span className="text-[9px] font-mono tracking-[0.26em] text-stone-muted uppercase mt-0.5">
-                Architecture • Interior • 3D
+                Architecture • Interior • Visualization
               </span>
             </div>
           </a>
@@ -149,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
 
             <div className="flex justify-between text-xs text-stone-muted pt-2 font-mono">
               <span>rsdesign@gmail.com</span>
-              <span>New Delhi, India</span>
+              <span>Lucknow, Uttar Pradesh</span>
             </div>
           </div>
         </div>

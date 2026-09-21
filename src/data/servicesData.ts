@@ -13,55 +13,68 @@ export interface ProcessStage {
 export const SERVICES_DATA: ServiceItem[] = [
   {
     number: '01',
-    title: 'Architectural Design',
-    tagline: 'Spatial Conception, Massing & Permitting',
-    description: 'Bespoke residential and cultural architecture grounded in contextual topography, environmental orientation, and sculptural proportions.',
+    title: 'Architecture',
+    tagline: 'Residential Architecture, Villa Design & Space Planning',
+    description: "Residential architecture designed around functionality, site conditions and the client's lifestyle.",
     deliverables: [
-      'Comprehensive Concept Massing & Feasibility Studies',
-      'Local Planning Permission & Regulatory Approval Sets',
-      'Detailed Architectural Construction Packages (1:20 & 1:5 Details)',
-      'Site Coordination & Architectural Quality Supervision'
+      'Villa Design',
+      'Residential Planning',
+      'Floor Plans',
+      'Elevations',
+      'Sections',
+      'Exterior Design',
+      'Space Planning'
     ],
-    software: ['Revit BIM', 'Rhino 8', 'Grasshopper', 'AutoCAD']
+    software: ['AutoCAD', 'Revit']
   },
   {
     number: '02',
-    title: 'Interior Architecture',
-    tagline: 'Material Palette, Millwork & Lighting',
-    description: 'Curating intimate atmospheres through custom joinery details, sensory material moodboards, and balanced circadian lighting schemes.',
+    title: 'Interior Design',
+    tagline: 'Thoughtful Planning, Materials, Lighting & Furniture',
+    description: 'Contemporary and personalized interiors designed with thoughtful planning, materials, lighting and furniture.',
     deliverables: [
-      'Full Interior Spatial Reconfiguration & Layout Plans',
-      'Custom Millwork, Cabinetry & Joinery Detailing',
-      'Tactile Material, Fixture & Sanitaryware Schedules',
-      'Architectural Lighting Design & Circuit Layouts'
+      'Living Room Design',
+      'Bedroom Design',
+      'Modular Kitchen Design',
+      'Dining Areas',
+      'TV Lounges',
+      'False Ceiling Design',
+      'Furniture Planning',
+      'Material Selection',
+      'Lighting Design'
     ],
-    software: ['SketchUp Pro', 'Revit', 'AutoCAD', 'Enscape']
+    software: ['AutoCAD', '3ds Max', 'V-Ray', 'D5 Render']
   },
   {
     number: '03',
-    title: '3D CGI Visualization',
-    tagline: 'Photorealistic Imagery, Light Studies & VR',
-    description: 'Transforming unbuilt concepts into emotionally evocative, hyper-realistic architectural still imagery and immersive cinematic walkthroughs.',
+    title: '3D Visualization',
+    tagline: 'Photorealistic Rendering & Architectural Walkthroughs',
+    description: 'Transforming architectural concepts into realistic visual experiences.',
     deliverables: [
-      '8K High-Fidelity Exterior & Interior CGI Stills',
-      'Solar Path & Daylight Penetration Studies',
-      'Interactive 360° VR Spatial Tours for Presentations',
-      'Unreal Engine 5 Real-Time Virtual Walkthroughs'
+      'Exterior Rendering',
+      'Interior Rendering',
+      'Photorealistic Visualization',
+      'Architectural Walkthroughs',
+      'Design Presentations',
+      '3D Concept Visualization'
     ],
-    software: ['3ds Max', 'Corona Renderer', 'V-Ray 6', 'Unreal Engine 5']
+    software: ['3ds Max', 'V-Ray', 'D5 Render', 'Photoshop']
   },
   {
     number: '04',
-    title: 'Cinematic Animations',
-    tagline: 'Choreographed Cameras & Mood Films',
-    description: 'Directing architectural films that tell spatial narratives through light transitions, atmospheric sound design, and micro-movements.',
+    title: '2D Drawings & Documentation',
+    tagline: 'Clear & Accurate Architectural Drawing Sets',
+    description: 'Clear and detailed drawings that communicate the design accurately.',
     deliverables: [
-      '4K 60fps Choreographed Architectural Film Sequences',
-      'Day-to-Night Architectural Time-Lapse Transitions',
-      'Construction Sequence & Structural Assembly Visuals',
-      'Curated Sound Design & Original Ambient Audio Stems'
+      'Floor Plans',
+      'Furniture Layouts',
+      'Elevations',
+      'Sections',
+      'Ceiling Plans',
+      'Electrical Layouts',
+      'Working Drawings'
     ],
-    software: ['DaVinci Resolve', 'After Effects', 'Phoenix FD', '3ds Max']
+    software: ['AutoCAD', 'Revit']
   }
 ];
 

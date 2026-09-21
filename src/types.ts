@@ -1,4 +1,4 @@
-export type ProjectCategory = 'All' | 'Architecture' | 'Interior Design' | '3D Visualization' | 'Commercial';
+export type ProjectCategory = 'All' | 'Architecture' | 'Interior Design' | '3D Visualization' | 'Drawings';
 
 export interface ProjectImage {
   url: string;
@@ -10,7 +10,7 @@ export interface Project {
   id: string;
   slug: string;
   title: string;
-  category: 'Architecture' | 'Interior Design' | '3D Visualization' | 'Commercial';
+  category: ProjectCategory
   subtitle: string;
   year: string;
   location: string;
