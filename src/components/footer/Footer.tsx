@@ -17,23 +17,32 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-12 pb-16 border-b border-warm-card">
           {/* Brand & Disciplines */}
           <div className="space-y-5 max-w-sm">
-            <div className="flex items-center space-x-3.5">
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTop();
+              }}
+              className="group inline-flex items-center space-x-3.5"
+              aria-label="RS Design Home"
+              data-cursor="RS DESIGN"
+            >
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                 <img
                   src="/logo.png"
                   alt="RS Design Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="font-serif tracking-[0.22em] text-lg text-stone-paper font-normal uppercase leading-tight">
+              <div className="flex flex-col items-start">
+                <span className="font-serif tracking-[0.22em] text-sm sm:text-base font-normal text-stone-paper uppercase group-hover:text-bronze-accent transition-colors leading-tight">
                   RS DESIGN
                 </span>
-                <span className="text-[9px] font-mono tracking-[0.25em] text-bronze-accent uppercase mt-0.5">
+                <span className="text-[9px] font-mono tracking-[0.26em] text-stone-muted uppercase mt-0.5">
                   Architecture • Interior • Visualization
                 </span>
               </div>
-            </div>
+            </a>
 
             <div className="space-y-1 font-sans text-xs text-[#C2BEB6] font-light">
               <p>Residential Architecture &amp; Villa Design</p>
@@ -103,11 +112,11 @@ export const Footer: React.FC = () => {
               href="https://www.instagram.com/rsdesign477?stkn=MTJrZzVsdHQyaHMxZA%3D%3D"
               target="_blank"
               rel="noreferrer"
-              className="group block p-2 bg-[#171615] border border-[#2A2825] hover:border-bronze-accent/60 rounded-xl transition-all duration-300 shadow-lg"
+              className="group inline-flex flex-col items-center self-start p-3 bg-[#151413] border border-[#262421] hover:border-bronze-accent/60 rounded-2xl transition-all duration-300 shadow-xl hover:-translate-y-0.5"
               title="Scan or click to visit @rsdesign477 on Instagram"
               data-cursor="INSTAGRAM"
             >
-              <div className="w-24 sm:w-28 aspect-square overflow-hidden rounded-lg bg-white p-1">
+              <div className="w-28 sm:w-32 aspect-square overflow-hidden rounded-xl bg-white p-2 flex items-center justify-center shadow-md">
                 <img
                   src="/rsdesign477_qr_instagram.png"
                   alt="RS Design Instagram QR Code"
@@ -115,9 +124,13 @@ export const Footer: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              <div className="mt-1.5 text-center">
-                <span className="text-[10px] font-mono text-stone-muted group-hover:text-bronze-accent transition-colors block">
-                  @rsdesign477 ↗
+              <div className="mt-2.5 flex flex-col items-center space-y-0.5 text-center">
+                <span className="text-xs font-mono text-stone-light group-hover:text-bronze-accent transition-colors flex items-center gap-1 font-medium">
+                  <span>@rsdesign477</span>
+                  <span className="text-bronze-accent text-xs">↗</span>
+                </span>
+                <span className="text-[9px] font-mono text-stone-muted uppercase tracking-wider">
+                  Scan to Follow
                 </span>
               </div>
             </a>

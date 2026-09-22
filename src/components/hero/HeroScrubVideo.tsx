@@ -18,12 +18,27 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
 
   useGSAP(
     () => {
+      if (isMobile) {
+        // Mobile screen: No pinned scrub timeline. Smooth entrance animation.
+        gsap.fromTo(
+          "#hero-center-heading",
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+        );
+        gsap.fromTo(
+          "#hero-scroll-cue",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8, delay: 0.3, ease: "power2.out" }
+        );
+        return;
+      }
+
       const video = videoRef.current;
       if (!video) return;
 
       const initTimeline = () => {
         const totalDuration = 15; // Normalized timeline duration
-        const scrollDistance = isMobile ? "+=3500" : "+=5200";
+        const scrollDistance = "+=5200";
 
         const videoTimeline = gsap.timeline({
           scrollTrigger: {
@@ -77,7 +92,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 1 (Left): 0.8s to 2.4s
         videoTimeline.fromTo(
           "#hero-phase-0",
-          { x: isMobile ? -60 : -140, opacity: 0 },
+          { x: -140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           0.8
         );
@@ -90,7 +105,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 2 (Right): 2.4s to 4.0s
         videoTimeline.fromTo(
           "#hero-phase-1",
-          { x: isMobile ? 60 : 140, opacity: 0 },
+          { x: 140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           2.4
         );
@@ -103,7 +118,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 3 (Left): 4.0s to 5.6s
         videoTimeline.fromTo(
           "#hero-phase-2",
-          { x: isMobile ? -60 : -140, opacity: 0 },
+          { x: -140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           4.0
         );
@@ -116,7 +131,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 4 (Right): 5.6s to 7.2s
         videoTimeline.fromTo(
           "#hero-phase-3",
-          { x: isMobile ? 60 : 140, opacity: 0 },
+          { x: 140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           5.6
         );
@@ -129,7 +144,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 5 (Left): 7.2s to 8.8s
         videoTimeline.fromTo(
           "#hero-phase-4",
-          { x: isMobile ? -60 : -140, opacity: 0 },
+          { x: -140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           7.2
         );
@@ -142,7 +157,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 6 (Right): 8.8s to 10.4s
         videoTimeline.fromTo(
           "#hero-phase-5",
-          { x: isMobile ? 60 : 140, opacity: 0 },
+          { x: 140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           8.8
         );
@@ -155,7 +170,7 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
         // Phase 7 (Left): 10.4s to 12.0s
         videoTimeline.fromTo(
           "#hero-phase-6",
-          { x: isMobile ? -60 : -140, opacity: 0 },
+          { x: -140, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
           10.4
         );
@@ -189,21 +204,29 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
     <div
       id="hero-section"
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-warm-dark select-none"
+      className="relative w-full h-[100svh] min-h-[550px] overflow-hidden bg-warm-dark select-none"
     >
-      {/* Background Scrubbed Architecture Video */}
-      <video
-        ref={videoRef}
-        src="/videos/input.mp4"
-        playsInline
-        preload="auto"
-        muted
-        className="w-full h-full object-cover"
-      />
+      {/* Background: Video on Desktop, Static Image on Mobile */}
+      {isMobile ? (
+        <img
+          src="/hero.jpg"
+          alt="RS Design Architecture Studio"
+          className="w-full h-full object-cover object-center"
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          src="/videos/input.mp4"
+          playsInline
+          preload="auto"
+          muted
+          className="w-full h-full object-cover"
+        />
+      )}
 
       {/* Atmospheric Vignette & Contrast Overlay */}
-      <div className="absolute inset-0 bg-linear-to-t from-warm-dark via-warm-dark/25 to-warm-dark/60 pointer-events-none" />
-      <div className="absolute inset-0 bg-warm-dark/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-warm-dark via-warm-dark/30 to-warm-dark/65 pointer-events-none" />
+      <div className="absolute inset-0 bg-warm-dark/35 pointer-events-none" />
 
       {/* =============================================================
           1. MAIN HEADING IN CENTER (VISIBLE BEFORE SCROLL STARTS)
@@ -220,22 +243,21 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
             </span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-stone-paper uppercase leading-[0.96] drop-shadow-2xl">
+          <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-stone-paper uppercase leading-[0.98] drop-shadow-2xl">
             Designing Spaces. <br className="hidden sm:block" />
             <span className="italic font-normal text-bronze-accent">Defining Experiences.</span>
           </h1>
-          <div className="mt-4 flex items-center space-x-2 text-[10px] sm:text-xs font-mono tracking-[0.25em] text-stone-light/80 uppercase">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono tracking-[0.2em] sm:tracking-[0.25em] text-stone-light/80 uppercase">
             <span>Architecture</span>
             <span className="text-bronze-accent">•</span>
             <span>Interior Design</span>
             <span className="text-bronze-accent">•</span>
             <span>3D Visualization</span>
-
           </div>
 
-          <p className="mt-5 max-w-2xl text-xs sm:text-sm md:text-base text-stone-light/90 font-light leading-relaxed drop-shadow-md">
+          <p className="mt-4 sm:mt-5 max-w-2xl text-xs sm:text-sm md:text-base text-stone-light/90 font-light leading-relaxed drop-shadow-md">
             RS Design creates thoughtfully designed residential spaces that combine functionality, contemporary aesthetics and detailed visualization.
-            <br />From initial planning and 2D drawings to realistic 3D visualization, we transform ideas into spaces that are designed with purpose.
+            <br className="hidden sm:inline" /> From initial planning and 2D drawings to realistic 3D visualization, we transform ideas into spaces that are designed with purpose.
           </p>
         </div>
       </div>
@@ -243,66 +265,69 @@ export function HeroScrubVideo({ onExploreClick }: HeroScrubVideoProps) {
       {/* =============================================================
           2. THE 7 ALTERNATING PHASES (ODD = LEFT, EVEN = RIGHT)
           Each phase enters horizontally from Left or Right on scroll
+          (Desktop only - hidden on mobile)
       ============================================================== */}
-      {PROCESS_STAGES.map((stage, index) => {
-        const isRight = index % 2 === 1; // 0 (Phase 1) is Left, 1 (Phase 2) is Right...
+      {!isMobile &&
+        PROCESS_STAGES.map((stage, index) => {
+          const isRight = index % 2 === 1; // 0 (Phase 1) is Left, 1 (Phase 2) is Right...
 
-        return (
-          <div
-            key={stage.step}
-            id={`hero-phase-${index}`}
-            className={`absolute top-1/2 -translate-y-1/2 z-20 pointer-events-none opacity-0 px-4 sm:px-0 w-full sm:w-auto max-w-md lg:max-w-lg ${isRight
-              ? "right-0 sm:right-10 lg:right-20 text-right flex flex-col items-end"
-              : "left-0 sm:left-10 lg:left-20 text-left flex flex-col items-start"
-              }`}
-          >
-            {/* Glassmorphic Architectural Card */}
-            <div className="bg-warm-dark/85 backdrop-blur-xl border border-[#2E2C29] p-6 sm:p-8 rounded-2xl shadow-2xl w-full">
-              {/* Phase Badge */}
-              <div
-                className={`flex items-center space-x-2.5 text-[11px] font-mono text-bronze-accent tracking-[0.3em] uppercase mb-2 ${isRight ? "justify-end" : "justify-start"
-                  }`}
-              >
-                {!isRight && <span className="w-1.5 h-1.5 rounded-full bg-bronze-accent" />}
-                <span>PHASE {stage.step} / 07</span>
-                <span className="text-[#555048]">•</span>
-                <span className="text-stone-muted">{stage.category}</span>
-                {isRight && <span className="w-1.5 h-1.5 rounded-full bg-bronze-accent" />}
-              </div>
+          return (
+            <div
+              key={stage.step}
+              id={`hero-phase-${index}`}
+              className={`hidden md:flex absolute top-1/2 -translate-y-1/2 z-20 pointer-events-none opacity-0 px-4 sm:px-0 w-full sm:w-auto max-w-md lg:max-w-lg ${isRight
+                ? "right-0 sm:right-10 lg:right-20 text-right flex-col items-end"
+                : "left-0 sm:left-10 lg:left-20 text-left flex-col items-start"
+                }`}
+            >
+              {/* Glassmorphic Architectural Card */}
+              <div className="bg-warm-dark/85 backdrop-blur-xl border border-[#2E2C29] p-6 sm:p-8 rounded-2xl shadow-2xl w-full">
+                {/* Phase Badge */}
+                <div
+                  className={`flex items-center space-x-2.5 text-[11px] font-mono text-bronze-accent tracking-[0.3em] uppercase mb-2 ${isRight ? "justify-end" : "justify-start"
+                    }`}
+                >
+                  {!isRight && <span className="w-1.5 h-1.5 rounded-full bg-bronze-accent" />}
+                  <span>PHASE {stage.step} / 07</span>
+                  <span className="text-[#555048]">•</span>
+                  <span className="text-stone-muted">{stage.category}</span>
+                  {isRight && <span className="w-1.5 h-1.5 rounded-full bg-bronze-accent" />}
+                </div>
 
-              {/* Big Phase Name */}
-              <h3 className="font-serif text-3xl sm:text-5xl text-stone-paper font-light uppercase tracking-tight leading-none drop-shadow-md">
-                {stage.name}
-              </h3>
+                {/* Big Phase Name */}
+                <h3 className="font-serif text-3xl sm:text-5xl text-stone-paper font-light uppercase tracking-tight leading-none drop-shadow-md">
+                  {stage.name}
+                </h3>
 
-              {/* Phase Focus Title */}
-              <h4 className="text-xs sm:text-sm font-mono text-bronze-accent/90 uppercase tracking-widest pt-2">
-                {stage.title}
-              </h4>
+                {/* Phase Focus Title */}
+                <h4 className="text-xs sm:text-sm font-mono text-bronze-accent/90 uppercase tracking-widest pt-2">
+                  {stage.title}
+                </h4>
 
-              {/* Narrative Description */}
-              <p className="mt-3 text-xs sm:text-sm font-light text-stone-light/85 leading-relaxed">
-                {stage.description}
-              </p>
+                {/* Narrative Description */}
+                <p className="mt-3 text-xs sm:text-sm font-light text-stone-light/85 leading-relaxed">
+                  {stage.description}
+                </p>
 
-              {/* Deliverable Badge */}
-              <div className="mt-4 pt-3 border-t border-[#262422]">
-                <span className="inline-block px-3.5 py-1 rounded-full bg-[#1A1918] border border-[#2E2C29] text-[10px] font-mono text-stone-muted tracking-wider uppercase">
-                  Deliverable: <span className="text-stone-light">{stage.deliverable}</span>
-                </span>
+                {/* Deliverable Badge */}
+                <div className="mt-4 pt-3 border-t border-[#262422]">
+                  <span className="inline-block px-3.5 py-1 rounded-full bg-[#1A1918] border border-[#2E2C29] text-[10px] font-mono text-stone-muted tracking-wider uppercase">
+                    Deliverable: <span className="text-stone-light">{stage.deliverable}</span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      {/* Initial Bottom Scroll Indicator (Fades out when scroll starts) */}
+      {/* Initial Bottom Scroll Indicator */}
       <div
         id="hero-scroll-cue"
-        className="absolute bottom-8 left-6 sm:left-12 right-6 sm:right-12 flex flex-col items-center justify-center pointer-events-none z-20"
+        onClick={onExploreClick}
+        className="absolute bottom-8 left-6 sm:left-12 right-6 sm:right-12 flex flex-col items-center justify-center z-20 cursor-pointer pointer-events-auto"
       >
         <div className="text-[11px] font-mono text-stone-muted tracking-wider uppercase">
-          Scroll to explore the 7-phase transformation
+          {isMobile ? "Scroll to explore" : "Scroll to explore the 7-phase transformation"}
         </div>
         <span className="text-bronze-accent text-xs mt-1 animate-bounce">↓</span>
       </div>
