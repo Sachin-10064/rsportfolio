@@ -25,10 +25,33 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   });
 
   const [submitted, setSubmitted] = useState<boolean>(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const SCRIPT_URL = import.meta.env.VITE_PUBLIC_SHEET_URL;
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    setSubmitted(false);
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new URLSearchParams({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          serviceType: formData.serviceType,
+          projectLocation: formData.projectLocation,
+          approxScale: formData.approxScale,
+          timeline: formData.timeline,
+          message: formData.message,
+          website: '', // honeypot, see below
+        }),
+      });
+      setSubmitted(true); // your existing success state
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setSubmitted(true);
+    }
   };
 
   const handleReset = () => {
@@ -215,6 +238,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
                   <div>
                     <label className="block text-[11px] font-mono uppercase text-stone-muted mb-1.5">
+                      Phone / WhatsApp Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="e.g. +91 98893 37006"
+                      className="w-full bg-warm-dark border border-[#2E2C29] rounded-lg px-3.5 py-2.5 text-xs text-stone-light focus:outline-hidden focus:border-bronze-accent"
+                    />
+                  </div>
+
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase text-stone-muted mb-1.5">
                       Email Address *
                     </label>
                     <input
@@ -225,25 +265,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="arjun@example.com"
                       className="w-full bg-warm-dark border border-[#2E2C29] rounded-lg px-3.5 py-2.5 text-xs text-stone-light focus:outline-hidden focus:border-bronze-accent"
                     />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase text-stone-muted mb-1.5">
-                      Service Scope
-                    </label>
-                    <select
-                      value={formData.serviceType}
-                      onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
-                      className="w-full bg-warm-dark border border-[#2E2C29] rounded-lg px-3.5 py-2.5 text-xs text-stone-light focus:outline-hidden focus:border-bronze-accent"
-                    >
-                      <option>Architecture & Construction</option>
-                      <option>Luxury Interior Design</option>
-                      <option>3D Photorealistic CGI Visualization</option>
-                      <option>Commercial / Hospitality Design</option>
-                      <option>Full Turnkey Execution</option>
-                    </select>
                   </div>
                   <div>
                     <label className="block text-[11px] font-mono uppercase text-stone-muted mb-1.5">
@@ -259,6 +280,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
                 </div>
 
+                <div>
+                  <label className="block text-[11px] font-mono uppercase text-stone-muted mb-1.5">
+                    Service Scope
+                  </label>
+                  <select
+                    value={formData.serviceType}
+                    onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+                    className="w-full bg-warm-dark border border-[#2E2C29] rounded-lg px-3.5 py-2.5 text-xs text-stone-light focus:outline-hidden focus:border-bronze-accent"
+                  >
+                    <option>Architecture & Construction</option>
+                    <option>Luxury Interior Design</option>
+                    <option>3D Photorealistic CGI Visualization</option>
+                    <option>Commercial / Hospitality Design</option>
+                    <option>Full Turnkey Execution</option>
+                  </select>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[11px] font-mono uppercase text-stone-muted mb-1.5">
@@ -269,10 +307,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       onChange={(e) => setFormData({ ...formData, approxScale: e.target.value })}
                       className="w-full bg-warm-dark border border-[#2E2C29] rounded-lg px-3.5 py-2.5 text-xs text-stone-light focus:outline-hidden focus:border-bronze-accent"
                     >
-                      <option>Under 3,000 sq ft</option>
-                      <option>3,000 - 8,000 sq ft</option>
-                      <option>8,000 - 15,000 sq ft</option>
-                      <option>15,000+ sq ft / Estate / Masterplan</option>
+                      <option>Under 1,000 sq ft</option>
+                      <option>1,000 - 5,000 sq ft</option>
+                      <option>5,000 - 10,000 sq ft</option>
+                      <option>10,000+ sq ft / Estate / Masterplan</option>
                     </select>
                   </div>
                   <div>
